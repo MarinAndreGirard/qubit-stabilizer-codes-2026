@@ -1,2 +1,12 @@
 .DS_Store
 __pycache__/
+note/*.aux
+note/*.log
+note/*.fls
+note/*.fdb_latexmk
+note/*.out
+note/*Notes.bib
+note/*.png
+note/*.bbl
+note/*.blg
+note/*.synctex.gz

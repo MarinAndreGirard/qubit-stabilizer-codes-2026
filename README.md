@@ -3,9 +3,7 @@
 Explicit [[n,k,d]] qubit stabilizer codes. Each one has a larger minimum distance at its (n,k) than the lower
 bound listed on [codetables.de](https://www.codetables.de) on 4 November 2026: 161 codes by +1 and 31 by +2.
 
-Author: Marin Girard, Virginia Tech.
-
-**Status: draft release.**
+Author: Marin Girard, Virginia Tech. A short write-up of the method and results is in [`note/note.pdf`](note/note.pdf).
 
 ## Contents
 
@@ -26,6 +24,10 @@ comparison/
   direct.csv             each code against the table at its own (n,k)
   raised_entries.csv     every table cell our codes raise, and which code raises it
   summary.json
+note/
+  note.tex, note.pdf     short write-up: construction, where it wins, predictions, certification
+  predict.py             first-moment predictor; writes predicted_gains.csv for all n <= 256, d = 5..13
+  make_figure.py         makes fig-codes.pdf from codes/, comparison/ and predicted_gains.csv
 provenance/
   recipes/*.json.gz      the tensor-network (LEGO) recipe and random seed that generated each code
 ```
