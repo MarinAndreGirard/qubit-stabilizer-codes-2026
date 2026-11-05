@@ -1,0 +1,25 @@
+{
+ "codes": 192,
+ "n_range": [
+  53,
+  254
+ ],
+ "d_range": [
+  5,
+  13
+ ],
+ "direct_gain_in_d": {
+  "1": 161,
+  "2": 31
+ },
+ "direct_not_above_table": 0,
+ "direct_above_upper_bound": 0,
+ "nondominated": 162,
+ "raised_entries": 1873,
+ "raised_gain_in_d": {
+  "1": 1748,
+  "2": 125
+ },
+ "raised_above_upper_bound": 0,
+ "table_snapshot": "codetables-2026-11-04.csv"
+}
