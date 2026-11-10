@@ -14,6 +14,7 @@ codes/
   witnesses.csv          for each code, one logical operator of weight exactly d
 verify/
   check_codes.py         valid stabilizer code + weight-d logical; plain Python, no packages, about 1 s
+  check_purity.py        every code is pure (no stabilizer of weight below d); plain Python, about 2 min
   certify_distance.py    independent proof of distance >= d by exhaustive search (numpy, numba)
   test_certify.py        tests of the certifier against brute force and planted low-weight logicals
   run_local.py           runs the certifier on the cheapest codes within a time budget
@@ -46,6 +47,16 @@ commute, and that the listed logical operator has weight d, commutes with every 
 stabilizer. So each code is a valid [[n,k]] code with **distance at most d**.
 
 ```bash
+python3 verify/check_purity.py
+```
+
+This checks that every code is **pure**: its stabilizer group has no element of weight below d other than the
+identity. It bounds the minimum weight of the stabilizer group from below with disjoint information sets (the
+Brouwer–Zimmermann method) and enumerates the sums of a few generators that the bound does not cover. The
+results are in `results/purity.csv`. With `--selftest` it compares itself with brute force on 400 small random
+groups.
+
+```bash
 python3 verify/certify_distance.py codes/stabilizers/n097_k054_d09.txt
 ```
 
@@ -67,6 +78,7 @@ and 252–255-qubit codes with a planted low-weight logical.
 | Check | Codes |
 |---|---|
 | Valid stabilizer code, weight-d logical (distance ≤ d) | 192 / 192 |
+| Pure: no stabilizer of weight below d | 192 / 192, in `results/purity.csv` |
 | Distance ≥ d, independent certifier on a laptop (Apple M3, 8 threads, about 5 min total) | 32 / 192, in `results/certify_local.jsonl` |
 | Distance ≥ d, original certifiers on Aurora (ALCF), run on a code rebuilt from its recipe | 190 / 192, in `results/original_certifier_runs.csv` |
 | Distance ≥ d by at least one of the two | **192 / 192** (30 by both) |
@@ -109,7 +121,7 @@ The search and certification programs were written and run by AI agents directed
 
 ## Requirements
 
-Python 3.8+. `check_codes.py` needs nothing else; the certifier needs `numpy` and `numba`.
+Python 3.8+. `check_codes.py` and `check_purity.py` need nothing else; the certifier needs `numpy` and `numba`.
 
 ## License
 

@@ -19,19 +19,7 @@
 \date{\today}
 
 \begin{abstract}
-I report 192 explicit binary stabilizer codes $[[n,k,d]]$ with $53\le n\le 254$ and $5\le d\le 13$ whose minimum
-distance exceeds the lower bound listed in Grassl's code tables at the same $(n,k)$: 161 codes by one and 31 by two.
-Through the standard propagation rules they raise 1,873 entries of the table. For 190 of the codes, a random Clifford
-encoder is followed by expurgation: every logical operator of weight below the target distance is enumerated, and a
-few logical operators are promoted to stabilizers so that each low-weight one anticommutes with at least one of them.
-The other two are obtained by puncturing a code from the table and repairing it in the same way. All 192 distances are
-exact: the lower bound is certified by exhaustive meet-in-the-middle enumeration of up to $4\times10^{13}$ Pauli
-operators, and the upper bound by an explicit logical operator of weight $d$. A first-moment count explains the
-results. Expurgated random codes have about eight more logical qubits than a typical random code of the same length
-and distance, so they beat the table wherever its best known codes are no better than random. The largest gains, up to
-nine logical qubits, are at $d\ge9$ and $n\gtrsim170$, where the table often gives a lower bound without an explicit
-code. The same count predicts improvements at 619 further pairs $(n,d)$. The search started from scratch and was run
-by AI agents. The codes, their certificates and an independent checker are public.
+I report 192 explicit binary stabilizer codes $[[n,k,d]]$ with $53\le n\le 254$ and $5\le d\le 13$ whose minimum distance exceeds the lower bound listed in Grassl's code tables at the same $(n,k)$: 161 codes by one and 31 by two. Through the standard propagation rules they raise 1,873 entries of the table. For 190 of the codes, a random Clifford encoder is followed by expurgation: every logical operator of weight below the target distance is enumerated, and a few logical operators are promoted to stabilizers so that each low-weight one anticommutes with at least one of them. The other two are obtained by puncturing a code from the table and repairing it in the same way. All 192 distances are exact: the lower bound is certified by exhaustive meet-in-the-middle enumeration of up to $4\times10^{13}$ Pauli operators, and the upper bound by an explicit logical operator of weight $d$. A first-moment count explains the results. Expurgated random codes have about eight more logical qubits than a typical random code of the same length and distance, so they beat the table wherever its best known codes are no better than random. The largest gains, up to nine logical qubits, are at $d\ge9$ and $n\gtrsim170$, where the table often gives a lower bound without an explicit code. The same count predicts improvements at 619 further pairs $(n,d)$. The search was run by AI agents. The codes, their certificates and an independent checker are public.
 \end{abstract}
 
 \maketitle
@@ -44,7 +32,7 @@ behind the lower bounds are mostly cyclic-type codes, shortened or extended by e
 entries with $n\ge100$ and $5\le d\le13$, 21 come from BCH, cyclic, constacyclic, quasi-cyclic or twisted codes, 2 from
 stored generator matrices, and 3 have no explicit code. Over the whole table, more than half of the entries with
 $n\ge100$ (15,011 of 27,946 with $k\ge1$) give a lower bound but no explicit code. Random stabilizer codes reach the
-quantum Gilbert--Varshamov bound~\cite{ekert}, and over most of the table the best known codes are much better than
+quantum Gilbert--Varshamov bound~\cite{fengma}, and over most of the table the best known codes are much better than
 that random-code level (Fig.~\ref{fig:codes}).
 
 This note reports that random Clifford codes, improved by expurgation and certified by exhaustive enumeration, beat
@@ -84,7 +72,7 @@ d(S')\ge D \iff W\cap U^{\perp}\subseteq U ,\label{eq:criterion}
 \end{align}
 that is, every low-weight logical class must anticommute with some element of $U$ or become a stabilizer. In practice
 the generators $u_1,\dots,u_q$ of $U$ are chosen so that every $w\in W$ anticommutes with at least one $u_j$; they are
-found by a randomized search that uses linear algebra over $\F$ to impose these constraints.
+found by a randomized search that uses linear algebra over $\F$ to impose these constraints. With this choice no class of $W$ lies in $U$, so no low-weight logical operator of the parent becomes a stabilizer. This is why the codes are pure (Sec.~\ref{sec:certification}).
 
 \emph{Puncture and repair.} Two of the codes start from a table code instead of a random one. One qubit of
 $[[113,73,9]]$ or $[[113,85,7]]$ is punctured, which gives $[[112,74]]$ and $[[112,86]]$ parents with distance at
@@ -102,8 +90,7 @@ A random code typically has distance at least $d$ when $E<1$, that is, when $k<k
 \begin{align}
 k_{\rm rand}(n,d)=n-\log_2\sum_{w=1}^{d-1}\binom{n}{w}3^{w}.
 \end{align}
-This is the quantum Gilbert--Varshamov bound for nondegenerate codes~\cite{ekert}. Each extra logical qubit doubles
-$E$, so it is natural to measure codes on a logarithmic scale. The excess
+This is the random-code level. A rigorous existence bound of this form, the quantum Gilbert--Varshamov bound at finite length, was proved for pure stabilizer codes by Feng and Ma~\cite{fengma}. Each extra logical qubit doubles $E$, so it is natural to measure codes on a logarithmic scale. The excess
 \begin{align}
 X(n,k,d)=\log_2 E(n,k,d)=k-k_{\rm rand}(n,d)
 \end{align}
@@ -149,8 +136,7 @@ them works gives the expected number of subspaces that satisfy Eq.~\eqref{eq:cri
 \begin{align}
 \mathcal{N}\approx 2^{\,2Kq-\frac{3}{2}q^{2}}\,\bigl(1-2^{-q}\bigr)^{m}.\label{eq:N}
 \end{align}
-If $\mathcal{N}\gg1$, good subspaces should exist; if $\mathcal{N}\ll1$, they almost certainly do not. (This is the
-first-moment heuristic: it ignores correlations between the events.) In base-2 logarithms, using
+If $\mathcal{N}\gg1$, good subspaces should exist; if $\mathcal{N}\ll1$, they almost certainly do not. In base-2 logarithms, using
 $\log_2 e^{-x}=-x/\ln2$ and Step 2,
 \begin{align}
 \log_2\mathcal{N}\approx\Bigl(2Kq-\tfrac{3}{2}q^{2}\Bigr)-\frac{2^{X(n,k,D)}}{\ln2}.
@@ -252,17 +238,12 @@ all & 192 & 53--254 & 161 & 31 & \\
 random-window search. Checking it takes a few lines of linear algebra: it commutes with every generator and is not in
 the stabilizer group.
 
-\emph{Lower bound.} Let $b=\lfloor (D-1)/2\rfloor$ and $a=D-1-b$. Every Pauli operator $P$ of weight at most $D-1$ splits
-as $P=AB$ with disjoint supports, $\wt(B)\le b$ and $\wt(A)\le a$. If $P\in N(S)$ then $A$ and $B$ have the same
-syndrome. It therefore suffices to enumerate all Pauli operators of weight at most $b$, together with all of weight
-exactly $a$ when $a=b+1$, find every pair with equal syndromes, and check each product exactly: it is either a
-stabilizer, which is harmless, or a nontrivial logical operator, which refutes $d\ge D$. The number of syndrome
-evaluations is
+\emph{Lower bound.} Let $b=\lfloor (D-1)/2\rfloor$ and $a=D-1-b$. Every Pauli operator $P$ of weight at most $D-1$ splits as $P=AB$ with disjoint supports, $\wt(B)\le b$ and $\wt(A)\le a$. If $P\in N(S)$ then $A$ and $B$ have the same syndrome. It therefore suffices to enumerate all Pauli operators of weight at most $b$, together with all of weight exactly $a$ when $a=b+1$, find every pair with equal syndromes, and check each product exactly: it is either a stabilizer, which is harmless, or a nontrivial logical operator, which refutes $d\ge D$. The number of syndrome evaluations is
 \begin{align}
 \sum_{w=0}^{b}\binom{n}{w}3^{w}+[a>b]\binom{n}{a}3^{a},\label{eq:cost}
-\end{align}
-up to $4.2\times10^{13}$ for $[[188,121,12]]$. Every run records how many Pauli operators it visited, and in every
-complete run that count equals this closed form.
+\end{align} up to $4.2\times10^{13}$ for $[[188,121,12]]$. Every run records how many Pauli operators it visited, and in every complete run that count equals this closed form.
+
+\emph{Purity.} All 192 codes are pure: the stabilizer group contains no element of weight below $d$ other than the identity. The minimum weight of the whole normalizer $N(S)$, stabilizers included, is therefore $d$. For the random codes this follows from the construction. No low-weight logical operator of the parent is promoted to a stabilizer (Sec.~\ref{sec:construction}), and the stabilizer group of a random parent contains on average about $m\,4^{-K}$ elements of weight below $D$, which is negligible. Purity was also checked directly for every code.
 
 \emph{Implementations.} The two certifiers written during the search certified 190 of the codes on Aurora. A second,
 independent certifier, written afterwards with an AI assistant but sharing no code with the search, was tested against
@@ -317,8 +298,7 @@ also gives, for each code, the tensor-network recipe from which it can be rebuil
 enough to use and check the codes.
 
 \begin{acknowledgments}
-I thank ChunJun Cao for supervision and discussions, and Argonne National Laboratory for hosting the Genesis
-hackathon. This work utilized resources made available by the U.S. Department of Energy's Genesis Mission.
+I thank ChunJun Cao for supervision and discussions, and Argonne National Laboratory for hosting the Genesis hackathon. I thank Markus Grassl for his comments on the first version of this note. This work utilized resources made available by the U.S. Department of Energy's Genesis Mission. This work was supported by the U.S. Department of Energy, Office of Science, Office of Advanced Scientific Computing Research, as part of the Genesis Mission National Science and Technology Challenges, under Award Number DE-SC0026692.
 \end{acknowledgments}
 
 \begin{thebibliography}{9}
@@ -328,8 +308,8 @@ hackathon. This work utilized resources made available by the U.S. Department of
 Institute of Technology (1997), arXiv:quant-ph/9705052.
 \bibitem{crss} A. R. Calderbank, E. M. Rains, P. W. Shor, and N. J. A. Sloane, Quantum error correction via codes over
 GF(4), IEEE Trans. Inf. Theory \textbf{44}, 1369 (1998).
-\bibitem{ekert} A. Ekert and C. Macchiavello, Quantum error correction for communication, Phys. Rev. Lett.
-\textbf{77}, 2585 (1996).
+\bibitem{fengma} K. Feng and Z. Ma, A finite Gilbert--Varshamov bound for pure stabilizer quantum codes, IEEE
+Trans. Inf. Theory \textbf{50}, 3323 (2004).
 \bibitem{macwilliams} F. J. MacWilliams and N. J. A. Sloane, \emph{The Theory of Error-Correcting Codes}
 (North-Holland, Amsterdam, 1977).
 \bibitem{enumerators} C. Cao, M. J. Gullans, B. Lackey, and Z. Wang, Quantum Lego expansion pack: Enumerators from
